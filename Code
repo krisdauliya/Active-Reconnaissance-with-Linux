@@ -1,1 +1,71 @@
+First, Launch the Kali VM and go the terminal, do quick ping scan to  identify live hosts with a network ID of 10.1.1.*,  
+and initiate a ping scan while spoofing the source MAC address of 10.1.1.*
+	
+	root@Kali-Attacker:~# nmap –sP 10.1.1.*
+	
+Above command gives all available host starting form 10.1.1. in the network and skip port scan. We can do ping scan while spoofing the source
+MAC address at the same time with prefix 0, below is the command to ping and spoofing the source MAC
+
+	root@Kali-Attacker:~# nmap –v –sP –spoof-mac 0 10.1.1.*
+	
+To scan the IP protocol supported by the Host, we use below command 
+
+	root@Kali-Attacker:~# nmap –sO 10.1.1.10
+
+To scan Transmission Control Protocol (TCP), we use below command 
+
+	root@Kali-Attacker:~# nmap –sT 192.168.1.6
+
+To scan operating system, we use below command 
+
+	root@Kali-Attacker:~# nmap –O 10.1.1.10
+	
+In avobe comand, Nmap may not find the exact match for the Operating system information. To gather more information about the same host regarding its OS, make
+Nmap take approximate guesses as to what the OS may be, by using the command below with an included script.
+
+	root@Kali-Attacker:~# nmap –O –-osscan-guess 10.1.1.10
+	
+To scan the specific pot of host ( 10.1.1.10) , we use below command ( our port for scan is port 80)
+
+	root@Kali-Attacker:~# nmap –p 80 10.1.1.10
+	
+To scan the specific port of the hosts of multiple networks (192.168.1.0/24 and 10.1.1.0/28), we can use below formats 
+
+	root@Kali-Attacker:~# nmap –p 80 192.168.1.0/24 10.1.1.0/28
+
+Above command display all available hosts IP address, Port /Protocol, state, and service thru port, since we are scanning port 80 so port/Protocol will be 8/TCP
+and service will be http. However, below command will provide more information about all available ports/protocol, and service of the network.
+
+	root@Kali-Attacker:~# nmap 192.168.1.0/24 
+
+To view the IP packet sent and received through the specific IP address, we can use below command 
+
+	root@Kali-Attacker:~# nmap –-packet-trace 10.1.1.10
+	
+Here, we tack the packet sent and received thru DVL VM (10.1.1.10)
+
+Nmap can also be used to show local host data about which interfaces are up and what the route table looks like. Enter the command below.
+
+	root@Kali-Attacker:~# nmap –iflist
+	
+To detect remote services, both services and daemons, along with their respective version numbers
+
+	root@Kali-Attacker:~# nmap –sV 10.1.1.10
+	
+---------------We can use Zenmap for Network Scanning
+Zenmap is the official Nmap Security Scanner GUI. It is a multi-platform (Linux, Windows, Mac OS X, BSD, etc.). We can access it from Kali terminal
+just by typing zenmap. 
+	Open the zenmap, 
+	type 192.168.1.0/24 on target field, and 
+	chose Ping scan option then scan. 
+
+It will show Nmap outout, ports/Host info, Topology, Host Detail, Operating system, and services
+
+We can scan multiple netwwork as well as Update the comand as needed. 
+
+
+
+
+	
+
 
